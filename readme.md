@@ -1,6 +1,24 @@
 # Stereognosis Experiment
 
+## Protocol Overview
 
+1. Subject readiness: Subject with an arm in an armrest with light sensor
+1. Start recording (for this trial)
+detect this as dark for start position.
+  1. Protocol start:
+    * Move plates into grasp range.
+    * Play tones?
+    1. Subject grasps plates and matches force sensor target for n seconds
+    1. Detect adaquate grip
+    1. Reward subject
+  1. Reset
+    * Move plates to home
+1. Stop recording
+1. Loop for next trial
+
+## Todo
+
+* Setup jenkins with build target.
 
 ## Components
 
