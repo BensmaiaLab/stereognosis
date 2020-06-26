@@ -2,17 +2,19 @@
 
 ## Protocol Overview
 
-1. Subject readiness: Subject with an arm in an armrest with light sensor (should be dark)
-1. Start recording (for this trial)
-    1. Protocol start:
+1. Protocol start
+    1. Initialize apparatus and communications
+1. Start recording (for this trial? Or through whole session?)
+    1. trial start:
+        1. Subject readiness: Subject with an arm in an armrest with light sensor (should be dark)
         1. Move plates into grasp range.
         1. Play tones?
         1. Subject grasps plates and matches force sensor target for n seconds
         1. Detect adaquate grip
         1. Reward subject
-    1. Reset, move plates to home
+        1. Reset, move plates to home
+    1. Loop for next trial
 1. Stop recording
-1. Loop for next trial
 
 ## Todo
 
@@ -27,8 +29,8 @@
 
 ### Third Party
 
-* OpenEphys
-* Tekscan
+* (OpenEphys for neural recording)[https://open-ephys.org/]
+* (Tekscan)[https://www.tekscan.com/]
 * (PsychoPy)[https://www.psychopy.org/]
 
 #### OpenEphys
