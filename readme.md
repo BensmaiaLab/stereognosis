@@ -18,20 +18,30 @@
 
 ## Todo
 
+* Issue: Left trackpad sensor not connected
 * Setup jenkins with build target.
 
-## Components
 
+## Motors
+
+* Stage In/Out
+* Aperture
+* Rotation
+
+
+## Components
+* [Current code](https://github.com/nishbo/touch_pad_deeplabcut_rig)
 * [ExperimentCore](https://github.com/BensmaiaLab/experimentCore)
   * [Repo](https://github.com/psychopy/psychopy)
 * [NCams](https://github.com/CMGreenspon/NCams)
-* [TouchPad](https://github.com/nishbo/touch_pad_deeplabcut_rig)
 
 ### Third Party
 
 * [OpenEphys for neural recording](https://open-ephys.org/)
 * [Tekscan](https://www.tekscan.com/)
 * [PsychoPy](https://www.psychopy.org/)
+* Blackrock (Optional, using the openephys currently)
+
 
 #### OpenEphys
 Neural recording software for Open Ephys 128ch acquisition board
