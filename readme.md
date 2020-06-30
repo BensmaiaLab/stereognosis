@@ -49,6 +49,9 @@ https://open-ephys.atlassian.net/wiki/spaces/OEW/pages/491527/Open+Ephys+GUI
 
 #### Tekscan
 
+* ? - https://www.microchip.com/design-centers/capacitive-touch-sensing
+* https://www.tekscan.com/products-solutions/pressure-mapping-sensors/5051
+
 The sensors we are using are from Tekscan. We have a cd in the lab with their .Net based SDK & all the manuals. Additionally the company sent us an older version of the API that supports C++, find it here:
 https://drive.google.com/file/d/1648yYxH9xtHlSKvrmmZaY_wclZA6qpmo/view?usp=sharing  
 
@@ -92,6 +95,10 @@ https://www.superlogics.com/industrial-computers/rack-mount-computers/quiet-rack
 NAN Instruments Electrode Drive
 
 ### Teknic
+
+[ClearPath System](https://www.teknic.com/clearpath-model-support/)
+
+[Support Docs](https://www.teknic.com/products/clearpath-brushless-dc-servo-motors/model-support-sc-dc/)
 
 * [Power Supply](https://www.teknic.com/ipc-5/)
   * PN# IPC-5 SN# 2990243
