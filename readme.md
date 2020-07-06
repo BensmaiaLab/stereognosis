@@ -1,5 +1,7 @@
 # Stereognosis Experiment
 
+* See also: [LabSharing\Stereognosis](\\bensmaia-lab\LabSharing\Stereognosis)
+
 ## Protocol Overview
 
 1. Protocol start
@@ -47,7 +49,12 @@
 Neural recording software for Open Ephys 128ch acquisition board
 https://open-ephys.atlassian.net/wiki/spaces/OEW/pages/491527/Open+Ephys+GUI
 
+
+
 #### Tekscan
+
+Tekscan 5051 is capable of up to 20khz sampling with VersaTek hub.
+Assume ~2000 sensels x 300hz x 16-bit sampling = 1.2 MBps / sec of data.
 
 * ? - https://www.microchip.com/design-centers/capacitive-touch-sensing
 * https://www.tekscan.com/products-solutions/pressure-mapping-sensors/5051

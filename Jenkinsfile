@@ -5,6 +5,8 @@ pipeline {
             steps {
                 echo "Starting Jenkins Build..."
                 // powershell "& .\\build.ps1 -debug -clean"
+                // release build by default
+                powershell "& .\\build.ps1"
                 // powershell '$p = (Get-Location).path; write-output "Testing:  ${p}"'
                 // archiveArtifacts artifacts: 'build/output/**', fingerprint: true, followSymlinks: false
             }
