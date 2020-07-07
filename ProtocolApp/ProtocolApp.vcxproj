@@ -67,7 +67,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CRT_SECURE_NO_WARNINGS;HMI_API_DYNAMIC;_WINDOWS;_USE_MATH_DEFINES;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>.\;.\libMicrochip3DTouchpad\include;.\libTeknicMotor\include;.\Protocol\;$(NIDAQ_HOME)\NI-DAQ\DAQmx ANSI C Dev\include;$(MCHP_HMI_API_PATH)\include</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>.\;.\lib\;.\lib\Microchip3DTouchpad\include\;.\lib\Teknic\;.\src\</AdditionalIncludeDirectories>
       <ForcedIncludeFiles>stdafx.h</ForcedIncludeFiles>
       <DebugInformationFormat>None</DebugInformationFormat>
       <WholeProgramOptimization>false</WholeProgramOptimization>
@@ -147,15 +147,28 @@
     </PreBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="lib\NIDAQmx.h" />
+    <ClInclude Include="lib\teknic\mnErrors.h" />
+    <ClInclude Include="lib\teknic\pubCoreRegs.h" />
+    <ClInclude Include="lib\teknic\pubCpmRegs.h" />
+    <ClInclude Include="lib\teknic\pubIscRegs.h" />
+    <ClInclude Include="lib\teknic\pubMnNetDef.h" />
+    <ClInclude Include="lib\teknic\pubMonPort.h" />
+    <ClInclude Include="lib\teknic\pubMotion.h" />
+    <ClInclude Include="lib\teknic\pubNetAPI.h" />
+    <ClInclude Include="lib\teknic\pubPwrReg.h" />
+    <ClInclude Include="lib\teknic\pubRegFldCommon.h" />
+    <ClInclude Include="lib\teknic\pubSysCls.h" />
+    <ClInclude Include="lib\teknic\tekTypes.h" />
     <ClInclude Include="ProtocolApp.h" />
     <ClInclude Include="ProtocolAppDlg.h" />
-    <ClInclude Include="Protocol\CStaticColor.h" />
-    <ClInclude Include="Protocol\Logger.h" />
-    <ClInclude Include="Protocol\NIUsb6001card.h" />
-    <ClInclude Include="Protocol\Touchpad3DDevice.h" />
-    <ClInclude Include="Protocol\Protocol.h" />
-    <ClInclude Include="Protocol\ProtocolParameters.h" />
-    <ClInclude Include="Protocol\TeknicMotorDevice.h" />
+    <ClInclude Include="src\CStaticColor.h" />
+    <ClInclude Include="src\Logger.h" />
+    <ClInclude Include="src\NIUsb6001card.h" />
+    <ClInclude Include="src\Touchpad3DDevice.h" />
+    <ClInclude Include="src\Protocol.h" />
+    <ClInclude Include="src\ProtocolParameters.h" />
+    <ClInclude Include="src\TeknicMotorDevice.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="targetver.h" />
@@ -163,13 +176,13 @@
   <ItemGroup>
     <ClCompile Include="ProtocolApp.cpp" />
     <ClCompile Include="ProtocolAppDlg.cpp" />
-    <ClCompile Include="Protocol\src\CStaticColor.cpp" />
-    <ClCompile Include="Protocol\src\Logger.cpp" />
-    <ClCompile Include="Protocol\src\NIUsb6001card.cpp" />
-    <ClCompile Include="Protocol\src\Touchpad3DDevice.cpp" />
-    <ClCompile Include="Protocol\src\Protocol.cpp" />
-    <ClCompile Include="Protocol\src\ProtocolParameters.cpp" />
-    <ClCompile Include="Protocol\src\TeknicMotorDevice.cpp" />
+    <ClCompile Include="src\CStaticColor.cpp" />
+    <ClCompile Include="src\Logger.cpp" />
+    <ClCompile Include="src\NIUsb6001card.cpp" />
+    <ClCompile Include="src\Touchpad3DDevice.cpp" />
+    <ClCompile Include="src\Protocol.cpp" />
+    <ClCompile Include="src\ProtocolParameters.cpp" />
+    <ClCompile Include="src\TeknicMotorDevice.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
@@ -184,6 +197,11 @@
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ProtocolApp.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\Microchip3DTouchpad\lib_x64\mchp_hmi.lib" />
+    <Library Include="lib\NIDAQmx.lib" />
+    <Library Include="lib\teknic\lib_x64\sFoundation20.lib" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

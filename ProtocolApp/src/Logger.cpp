@@ -7,6 +7,7 @@
 #define ONLY_TIME_FORMAT "%H:%M:%S"
 #define ONLY_DATE_FORMAT "%m/%d/%Y"
 #define TIME_IN_MILLISECONDS "%02d:%02d:%02d.%03d"
+
 /**
 *   The name of the log file is structured so: 'filename'_date_time.'extension'
 **/
@@ -40,7 +41,6 @@ Logger::Logger():m_numGoodTrials(0U), m_numTrialsAborted(0U), m_numTotalTrials(0
     } // if
 }
 
-// dtor
 Logger::~Logger() {
 	if (logFile.is_open()) {
         logFile << std::endl << std::endl;
@@ -79,9 +79,7 @@ string Logger::currentDateTimeInMilliseconds()
 	return string(TimeStamp);
 }
 
-void Logger::endLine() {
-	logFile << std::endl;
-}
+void Logger::endLine() { logFile << std::endl; }
 
 // Overload << operator using log type
 Logger& operator<<(Logger &logger, const LOG_TYPE logType) {
@@ -114,19 +112,11 @@ Logger& operator<<(Logger &logger, const char *text) {
     return logger;
 }
 
-LoggerDestroyer::LoggerDestroyer()
-{
-}
+LoggerDestroyer::LoggerDestroyer() {}
 
-LoggerDestroyer::~LoggerDestroyer()
-{
-	delete m_logger->m_instance;
-}
+LoggerDestroyer::~LoggerDestroyer() { delete m_logger->m_instance; }
 
-void LoggerDestroyer::setLogger(Logger *s)
-{
-	m_logger = s;
-}
+void LoggerDestroyer::setLogger(Logger *s) { m_logger = s; }
 
 void logError(const char * errorText) {
 	Logger * logger = LOGGER;

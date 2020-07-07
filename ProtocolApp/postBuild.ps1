@@ -16,7 +16,7 @@ makeDir("data")
 
 Write-Output " |> Copying DLLs..."
 xcopy /Y ".\configuration\*.*" "${OutDir}configuration\"
-xcopy /Y ".\libTeknicMotor\lib_x64\*.dll" "${OutDir}"
-xcopy /Y ".\libTeknicMotor\lib_x64\*.xml" "${OutDir}"
-xcopy /Y ".\libMicrochip3DTouchpad\lib_x64\mchp_hmi.dll" "${OutDir}"
+xcopy /Y ".\lib\Teknic\lib_x64\*.dll" "${OutDir}"
+xcopy /Y ".\lib\Teknic\lib_x64\*.xml" "${OutDir}"
+xcopy /Y ".\lib\Microchip3DTouchpad\lib_x64\mchp_hmi.dll" "${OutDir}"
 

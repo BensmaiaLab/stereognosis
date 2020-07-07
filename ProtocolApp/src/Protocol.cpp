@@ -114,17 +114,17 @@ void Protocol::run(atomic<bool> * stopProtocol, NIUsb6001card * m_NIUsb6001card,
     saveTouchPadInfoToFile(string("left"), filename, leftTouchPad.m_data.to_file_2d);
 }
 
-void Protocol::saveTouchPadInfoToFile(string & rightleft, string & filename, string & m_data_string)
+void Protocol::saveTouchPadInfoToFile(string & rightOrLeft, string & filename, string & m_data_string)
 {
     if (std::FILE* f = std::fopen(filename.c_str(), "w")) {
-        std::fprintf(f, "%s %s", rightleft.c_str(), m_data_string.c_str());
+        std::fprintf(f, "%s %s", rightOrLeft.c_str(), m_data_string.c_str());
         std::fclose(f);
 
-        string msg = " TouchPad " + rightleft + " saved to file";
+        string msg = " TouchPad " + rightOrLeft + " saved to file";
         logInfo(msg.c_str());
     }
     else {
-        string msg = " TouchPad " + rightleft + " could NOT save to file";
+        string msg = " TouchPad " + rightOrLeft + " could NOT save to file";
         logInfo(msg.c_str());
     }
 }
@@ -200,8 +200,8 @@ long Protocol::proportionalRewardCalculation(long long elapsed)
 
 bool Protocol::areBothSensorsTouched(Touchpad3DDevice& rightTouchPad, Touchpad3DDevice& leftTouchPad)
 {
-	if (rightTouchPad.isTouching && leftTouchPad.isTouching) return true;
-	return false;
+	if (rightTouchPad.isTouching && leftTouchPad.isTouching) { return true; }
+	else { return false; }
 }
 
 void Protocol::storeStartTime(time_point<std::chrono::steady_clock>& time)

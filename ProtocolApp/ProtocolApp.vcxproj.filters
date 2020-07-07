@@ -13,10 +13,6 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
-    <Filter Include="Configuration">
-      <UniqueIdentifier>{668534f5-9c4e-4b1c-8884-a79bf57c4432}</UniqueIdentifier>
-      <Extensions>cfg</Extensions>
-    </Filter>
     <Filter Include="Header Files\GUI">
       <UniqueIdentifier>{7ffd3ab5-afe2-430b-baf7-a304dfff16ae}</UniqueIdentifier>
     </Filter>
@@ -24,6 +20,19 @@
       <UniqueIdentifier>{0f73f70d-9ac9-4661-a515-3f311d93a40d}</UniqueIdentifier>
       <Extensions>
       </Extensions>
+    </Filter>
+    <Filter Include="Header Files\lib">
+      <UniqueIdentifier>{f5f0549f-a679-4b70-8485-bcc1971e8dfe}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\lib\Teknic">
+      <UniqueIdentifier>{dbf645f9-fd72-455c-a6cd-d7d24525b92f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Config">
+      <UniqueIdentifier>{668534f5-9c4e-4b1c-8884-a79bf57c4432}</UniqueIdentifier>
+      <Extensions>cfg</Extensions>
+    </Filter>
+    <Filter Include="Libraries">
+      <UniqueIdentifier>{d7109f21-efbc-4fbf-89af-dcdd1487ec85}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -42,26 +51,65 @@
     <ClInclude Include="ProtocolApp.h">
       <Filter>Header Files\GUI</Filter>
     </ClInclude>
-    <ClInclude Include="Protocol\Logger.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\Protocol.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\ProtocolParameters.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\TeknicMotorDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\Touchpad3DDevice.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\NIUsb6001card.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Protocol\CStaticColor.h">
+    <ClInclude Include="src\CStaticColor.h">
       <Filter>Header Files\GUI</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Logger.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\NIUsb6001card.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Protocol.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ProtocolParameters.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\TeknicMotorDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Touchpad3DDevice.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\mnErrors.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubCoreRegs.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubCpmRegs.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubIscRegs.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubMnNetDef.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubMonPort.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubMotion.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubNetAPI.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubPwrReg.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubRegFldCommon.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\pubSysCls.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\teknic\tekTypes.h">
+      <Filter>Header Files\lib\Teknic</Filter>
+    </ClInclude>
+    <ClInclude Include="lib\NIDAQmx.h">
+      <Filter>Header Files\lib</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -74,26 +122,26 @@
     <ClCompile Include="ProtocolAppDlg.cpp">
       <Filter>Source Files\GUI</Filter>
     </ClCompile>
-    <ClCompile Include="Protocol\src\Logger.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\src\Protocol.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\src\ProtocolParameters.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\src\TeknicMotorDevice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\src\Touchpad3DDevice.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\src\NIUsb6001card.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Protocol\src\CStaticColor.cpp">
+    <ClCompile Include="src\CStaticColor.cpp">
       <Filter>Source Files\GUI</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Logger.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\NIUsb6001card.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Protocol.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\ProtocolParameters.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TeknicMotorDevice.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Touchpad3DDevice.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -106,12 +154,23 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="configuration\config.ini">
-      <Filter>Configuration</Filter>
+      <Filter>Config</Filter>
     </None>
   </ItemGroup>
   <ItemGroup>
     <Image Include="res\ProtocolApp.ico">
       <Filter>Resource Files</Filter>
     </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="lib\Microchip3DTouchpad\lib_x64\mchp_hmi.lib">
+      <Filter>Libraries</Filter>
+    </Library>
+    <Library Include="lib\teknic\lib_x64\sFoundation20.lib">
+      <Filter>Libraries</Filter>
+    </Library>
+    <Library Include="lib\NIDAQmx.lib">
+      <Filter>Libraries</Filter>
+    </Library>
   </ItemGroup>
 </Project>
