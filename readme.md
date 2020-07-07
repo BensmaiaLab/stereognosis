@@ -2,6 +2,8 @@
 
 * See also: [LabSharing\Stereognosis](\\bensmaia-lab\LabSharing\Stereognosis)
 
+Setup to build using Jenkins on blbld.uchicago.edu
+
 ## Protocol Overview
 
 1. Protocol start
