@@ -28,10 +28,12 @@ Setup to build using Jenkins on blbld.uchicago.edu
 
 ## Motors
 
-* Stage In/Out
-* Aperture
-* Rotation
-
+| Label  | Name       | Note         | Idx | Orientation | Home |
+|--------|------------|--------------|-----|-------------|------|
+| Motor1 | Horizontal | Stage In/Out | 0   | -=Forward   | Back |
+| Motor2 | Rotation   | Rotation     | 1   | CW=-        | Leveled |
+| Motor3 | LeftDish   | ApertureL    | 2   |
+| Motor4 | RightDish  | ApertureR    | 3   |
 
 ## Components
 * [Current code](https://github.com/nishbo/touch_pad_deeplabcut_rig)
