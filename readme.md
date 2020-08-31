@@ -28,10 +28,10 @@ Setup to build using Jenkins on blbld.uchicago.edu
 
 ## Motors
 
-| Label  | Name       | Note         | Idx | Orientation | Home |
-|--------|------------|--------------|-----|-------------|------|
-| Motor1 | Horizontal | Stage In/Out | 0   | -=Forward   | Back |
-| Motor2 | Rotation   | Rotation     | 1   | CW=-        | Leveled |
+| Label  | Name       | Note         | Idx | Orientation | Home | Limits |
+|--------|------------|--------------|-----|-------------|------|--------|
+| Motor1 | Horizontal | Stage In/Out | 0   | -=Forward   | Back | -9k to +120k |
+| Motor2 | Rotation   | Rotation     | 1   | CW=-        | Leveled | ~-1.8k to ~+1.8k |
 | Motor3 | LeftDish   | ApertureL    | 2   |
 | Motor4 | RightDish  | ApertureR    | 3   |
 
