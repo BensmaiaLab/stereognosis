@@ -129,23 +129,20 @@ void Protocol::saveTouchPadInfoToFile(string & rightOrLeft, string & filename, s
     }
 }
 
-bool Protocol::isElapsedTheMinUncoveredTime(time_point<std::chrono::steady_clock>& photoresistorsUncoveredTime)
-{
+bool Protocol::isElapsedTheMinUncoveredTime(
+	time_point<std::chrono::steady_clock>& photoresistorsUncoveredTime) {
 	if (getElapsedMilliSecsSince(photoresistorsUncoveredTime) > MIN_UNCOVERED_TIME) return true;
 	return false;
 }
 
-void Protocol::setFontGuiTrialsCounter(CEdit * currentTrialGUICtrl)
-{
+void Protocol::setFontGuiTrialsCounter(CEdit * currentTrialGUICtrl) {
 	CFont* cEditControlFont = new CFont();
 	cEditControlFont->CreateFont(30, 0, 0, 0, FW_HEAVY, true, false, 0, ANSI_CHARSET, OUT_DEFAULT_PRECIS, CLIP_DEFAULT_PRECIS, DEFAULT_QUALITY, FIXED_PITCH | FF_MODERN, _T(FONT_TYPE));
 	currentTrialGUICtrl->SetFont(cEditControlFont);
 }
 
-void Protocol::logBadTrial(const long& nCurrentTrial)
-{
-	string msg = TRIAL_NUM_STR + to_string(nCurrentTrial);
-	msg = msg + TRIAL_ABORT_STR;
+void Protocol::logBadTrial(const long& nCurrentTrial) {
+	string msg = TRIAL_NUM_STR + to_string(nCurrentTrial) + TRIAL_ABORT_STR;
 	logError(msg.c_str());
 }
 
@@ -185,42 +182,39 @@ void Protocol::playStartTaskTone() { Beep(FREQUENCY_START_TASK_TONE, DURATION_TO
 
 void Protocol::playErrorTone() { Beep(FREQUENCY_ERROR_TONE, DURATION_TONE); }
 
-bool Protocol::isTimeout(time_point<std::chrono::steady_clock>& startToneTime)
-{
-	long timeElapsedFromStartTaskTone = getElapsedMicroSecsBetween(startToneTime, chrono::steady_clock::now());
-	if (timeElapsedFromStartTaskTone > milliToMicrosecs(params.maxWaitTime)) return true;
+bool Protocol::isTimeout(time_point<std::chrono::steady_clock>& startTime) {
+	long timeElapsedFromStart = getElapsedMicroSecsBetween(startTime, chrono::steady_clock::now());
+	if (timeElapsedFromStart > milliToMicrosecs(params.maxWaitTime)) return true;
 	return false;
 }
 
-long Protocol::proportionalRewardCalculation(long long elapsed)
-{
+long Protocol::proportionalRewardCalculation(long long elapsed) {
 	double proportionalFactor = 1 - (double)elapsed / params.maxWaitTime;
 	return (long)abs(params.rewardDuration * proportionalFactor);
 }
 
-bool Protocol::areBothSensorsTouched(Touchpad3DDevice& rightTouchPad, Touchpad3DDevice& leftTouchPad)
-{
-	if (rightTouchPad.isTouching && leftTouchPad.isTouching) { return true; }
-	else { return false; }
+bool Protocol::areBothSensorsTouched(
+	Touchpad3DDevice& rightTouchPad,
+	Touchpad3DDevice& leftTouchPad) {
+	if (rightTouchPad.isTouching && leftTouchPad.isTouching) return true;
+	return false;
 }
 
 void Protocol::storeStartTime(time_point<std::chrono::steady_clock>& time)
 { time = chrono::steady_clock::now(); }
 
-long Protocol::microToMillisecs(const long & microsecs)
-{ return (long) (microsecs / 1000); }
+long Protocol::microToMillisecs(const long & microsecs) { return (long)(microsecs / 1000); }
 
-long Protocol::milliToMicrosecs(const long & millisecs)
-{ return millisecs * 1000; }
+long Protocol::milliToMicrosecs(const long & millisecs) { return millisecs * 1000; }
 
-long Protocol::getElapsedMilliSecsSince(time_point<std::chrono::steady_clock> & startTime)
-{
+long Protocol::getElapsedMilliSecsSince(time_point<std::chrono::steady_clock> & startTime) {
 	auto elapsed = duration_cast<chrono::milliseconds>(chrono::steady_clock::now() - startTime);
 	return (long)elapsed.count();
 }
 
-long Protocol::getElapsedMicroSecsBetween(time_point<std::chrono::steady_clock> & startTime, time_point<std::chrono::steady_clock> & endTime)
-{
+long Protocol::getElapsedMicroSecsBetween(
+	time_point<std::chrono::steady_clock> & startTime,
+	time_point<std::chrono::steady_clock> & endTime) {
 	auto elapsed = duration_cast<chrono::microseconds>(endTime - startTime);
 	return (long)elapsed.count();
 }
