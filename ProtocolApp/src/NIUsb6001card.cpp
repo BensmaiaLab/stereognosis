@@ -8,7 +8,7 @@ using namespace std;
 int32 CVICALLBACK EveryNCallback(TaskHandle taskHandle, int32 everyNsamplesEventType, uInt32 nSamples, void* callbackData);
 int32 CVICALLBACK DoneCallback(TaskHandle taskHandle, int32 status, void* callbackData);
 
-enum PhotoResistor { FRONT = 0, REAR };
+enum PhotoResistor { FRONT = 0, REAR = 1 };
 
 void resetPhotoresistorGuiMonitor(CStaticColor* gui_monitor);
 void updatePhotoresistorGuiMonitor(CStaticColor* gui_monitor, PhotoResistor photoResistor);
@@ -46,17 +46,10 @@ COLORREF green = RGB(0, 255, 0);
 DWORD sysColor = GetSysColor(COLOR_BTNFACE);
 COLORREF normal = RGB(GetRValue(sysColor), GetGValue(sysColor), GetBValue(sysColor));
 
-NIUsb6001card::NIUsb6001card()
-{
-}
+NIUsb6001card::NIUsb6001card() {}
+NIUsb6001card::~NIUsb6001card() { stopAllTasks(); }
 
-NIUsb6001card::~NIUsb6001card()
-{
-	stopAllTasks();
-}
-
-void NIUsb6001card::config()
-{
+void NIUsb6001card::config() {
 	int32   error = 0, AUTOSTART = 1;
 	float64 TIMEOUT = 10.0;
 	// m_physicalChanAI is used only for the continuous reading of the photoresistors status
@@ -92,8 +85,7 @@ Error:
 	logErrMsg(error);
 }
 
-void NIUsb6001card::activateReward()
-{
+void NIUsb6001card::activateReward() {
 	int32   error = 0, AUTOSTART = 1;
 	float64 TIMEOUT = 10.0;
 
@@ -103,8 +95,7 @@ Error:
 	logErrMsg(error);
 }
 
-void NIUsb6001card::deactivateReward()
-{
+void NIUsb6001card::deactivateReward() {
 	int32   error = 0, AUTOSTART = 1;
 	float64 TIMEOUT = 10.0;
 
@@ -114,8 +105,7 @@ Error:
 	logErrMsg(error);
 }
 
-void NIUsb6001card::start()
-{
+void NIUsb6001card::start() {
 	int32 error = 0;
 	/*********************************************/
 	// DAQmx Start Code
@@ -127,44 +117,50 @@ Error:
 	logErrMsg(error);
 }
 
-void NIUsb6001card::stop()
-{
+void NIUsb6001card::stop() {
 	stopAllTasks();
 	resetPhotoresistorsGuiMonitor();
 }
 
-void NIUsb6001card::resetPhotoresistorsGuiMonitor()
-{
+void NIUsb6001card::resetPhotoresistorsGuiMonitor() {
 	resetPhotoresistorGuiMonitor(FRONT_PHOTORESISTOR_GUI_MONITOR);
 	resetPhotoresistorGuiMonitor(REAR_PHOTORESISTOR_GUI_MONITOR);
 }
 
-void NIUsb6001card::reward(long & millisecs)
-{
+void NIUsb6001card::reward(long & millisecs) {
 	activateReward();
 	Sleep(millisecs);
 	deactivateReward();
 }
 
-void NIUsb6001card::setFrontPhotoresistorMonitor(CStaticColor* gui_monitor)
-{
+void NIUsb6001card::setFrontPhotoresistorMonitor(CStaticColor* gui_monitor) {
 	FRONT_PHOTORESISTOR_GUI_MONITOR = gui_monitor;
 }
 
-void NIUsb6001card::setRearPhotoresistorMonitor(CStaticColor* gui_monitor)
-{
+void NIUsb6001card::setRearPhotoresistorMonitor(CStaticColor* gui_monitor) {
 	REAR_PHOTORESISTOR_GUI_MONITOR = gui_monitor;
 }
 
-int32 CVICALLBACK EveryNCallback(TaskHandle taskHandle, int32 everyNsamplesEventType, uInt32 nSamples, void *callbackData)
-{
+int32 CVICALLBACK EveryNCallback(
+	TaskHandle taskHandle,
+	int32 everyNsamplesEventType,
+	uInt32 nSamples,
+	void *callbackData) {
 	int32   readDI, error = 0, nBytesBufferSize = 2 * N_SAMPLES;
 	float64 TIMEOUT = 10.0;
 
-	/*********************************************/
 	// DAQmx Read Code
-	/*********************************************/
-	DAQmxErrChk(DAQmxReadDigitalLines(PhotoResistorStatus_taskHandle, N_SAMPLES, TIMEOUT, DAQmx_Val_GroupByChannel, PHOTORESISTORS_STATUS, N_PHOTORESISTORS, &readDI, &nBytesBufferSize, NULL));
+	DAQmxErrChk(
+		DAQmxReadDigitalLines(
+			PhotoResistorStatus_taskHandle,
+			N_SAMPLES,
+			TIMEOUT,
+			DAQmx_Val_GroupByChannel,
+			PHOTORESISTORS_STATUS,
+			N_PHOTORESISTORS,
+			&readDI,
+			&nBytesBufferSize,
+			NULL));
 
 	updatePhotoresistorGuiMonitor(REAR_PHOTORESISTOR_GUI_MONITOR, REAR);
 	updatePhotoresistorGuiMonitor(FRONT_PHOTORESISTOR_GUI_MONITOR, FRONT);
@@ -177,21 +173,18 @@ Error:
 	return 0;
 }
 
-void updatePhotoresistorGuiMonitor(CStaticColor* gui_monitor, PhotoResistor photoResistor)
-{
+void updatePhotoresistorGuiMonitor(
+	CStaticColor* gui_monitor, PhotoResistor photoResistor) {
 	if (gui_monitor != NULL) gui_monitor->SetBkColor(PHOTORESISTORS_STATUS[photoResistor] ? red : green);
 }
 
-void resetPhotoresistorGuiMonitor(CStaticColor* gui_monitor)
-{
+void resetPhotoresistorGuiMonitor(CStaticColor* gui_monitor) {
 	if (gui_monitor != NULL) gui_monitor->SetBkColor(normal);
 }
 
-int32 CVICALLBACK DoneCallback(TaskHandle taskHandle, int32 status, void *callbackData)
-{
+int32 CVICALLBACK DoneCallback(
+	TaskHandle taskHandle, int32 status, void *callbackData) {
 	int32   error = 0;
-
-	// Check to see if an error stopped the task.
 	DAQmxErrChk(status);
 
 Error:
@@ -199,8 +192,7 @@ Error:
 	return 0;
 }
 
-void stopTask(TaskHandle & taskHandle)
-{
+void stopTask(TaskHandle & taskHandle) {
 	if (taskHandle) {
 		DAQmxStopTask(taskHandle);
 		DAQmxClearTask(taskHandle);
@@ -208,19 +200,16 @@ void stopTask(TaskHandle & taskHandle)
 	}
 }
 
-void logErrMsg(const int32 & error)
-{
+void logErrMsg(const int32 & error) {
 	char    errBuff[2048] = { '\0' };
-	if (DAQmxFailed(error))
-	{
+	if (DAQmxFailed(error)) {
 		DAQmxGetExtendedErrorInfo(errBuff, 2048);
 		logError(errBuff);
 		stopAllTasks();
 	}
 }
 
-void stopAllTasks()
-{
+void stopAllTasks() {
 	stopTask(AItaskHandle);
 	stopTask(PhotoResistorStatus_taskHandle);
 	stopTask(RewardSystem_taskHandle);
