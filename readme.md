@@ -91,19 +91,35 @@ There are numerous online references of how to call a managed DLL (such as the S
 
 
 ## Apparatus
+
+### Reward System
+Is composed of a signal wire from the nidaq that runs to an enclosure, where it
+connects to a relay chip which turns on a transformer to deliver 24v to the
+water valve.
+
+DM had to repair the existing system, rewiring the connections the water valve.
+
+* Chip top has indent.
+* one line *beneath* the chip has a lot of wires to it, looks like ground, perhaps.
+* Red wire is in ground line of breadboard -> Sleeve of BNC
+* Green wire goes to right side of chip, pin 3 from the top -> middle (signal) of bnc
+* Replaced both with red wires (what I had avail) and moved the BNC connector on
+  the enclosure down to the same side as the valve.
+
+
 * (Valve for water reward)[https://ph.parker.com/us/12051/en/series-3-miniature-inert-liquid-valve/003-0865-900]
   * PN# 003-0865-9000
   * Plugged into NI-DAQ
 
 ### Rack
-ERS-16U - KX0318
-https://www.aurayaudio.com/product/10387/Auray-ERS_16U-16U-Steel-Equipment-Rack-with-3''-Casters-(16-RU)
 
-2 x Superlogics rackmount PCs - SL-2U-AQ370M-GD-QUIET
-SN# 248900002 and 3
-https://www.superlogics.com/industrial-computers/rack-mount-computers/quiet-rackmount-pc/sl-2u-ah370m-gd-quiet.html
+* ERS-16U - KX0318 https://www.aurayaudio.com/product/10387/Auray-ERS_16U-16U-Steel-Equipment-Rack-with-3''-Casters-(16-RU)
+* 2 x Superlogics rackmount PCs - SL-2U-AQ370M-GD-QUIET
+  * SN# 248900002 and 3
+  * https://www.superlogics.com/industrial-computers/rack-mount-computers/quiet-rackmount-pc/sl-2u-ah370m-gd-quiet.html
+* NAN Instruments Electrode Drive
+* [Tripplite Switched PDU PDUMH15NET2LX](https://www.tripplite.com/1.4kw-single-phase-switched-pdu-lx-platform-interface-8-nema-5-15r-120v-outlets-nema-5-15p-plug-12-foot-cord-1u-rack-mount-taa~PDUMH15NET2LX) - 10.120.56.21
 
-NAN Instruments Electrode Drive
 
 ### Teknic
 
