@@ -5,12 +5,14 @@
 .DESCRIPTION
     Deploys the contents of the local build dir to a target remote system using
     the WSMan system in Powershell.
+.PARAMETER BuildDir
+    Local Directory that will be compressed and copied to remote system.
 .PARAMETER TargetHost
-    <Brief description of parameter input required. Repeat this attribute if required>
+    Target IP or Hostname used to locate remote host.
 .INPUTS
     Files in the Build dir
 .OUTPUTS
-    Outputs to TargetDir on the TargetHost.
+    Modifies TargetDir on TargetHost.
 .NOTES
     Version:        1.0
     Author:         Danielle MacDonald
@@ -24,16 +26,17 @@
     `Set-Item -Path WSMan:\localhost\Client\TrustedHosts -Value '<IP or Hostname>' -Concatenate -Force`
 
 .EXAMPLE
-  <Example goes here. Repeat this attribute for more than one example>
+    deploy.ps1 -TargetHost '172.16.254.1'
 #>
 
 # Defaults TargetHost to the current Stereognosis Control Host IP
 param (
+    [Parameter(Mandatory=$true)][String[]]$BuildDir,
     [String[]]$TargetHost='205.208.63.128'
 )
 
 $PackageFile = 'deploy.zip'
-$RemoteIP = '205.208.63.128'
+$TargetDir = 'C:\Somlab\bin\stereognosis\'
 
 function Deploy-ToTargetHost {
         
@@ -47,9 +50,19 @@ function Deploy-ToTargetHost {
     Compress-Archive @p
     # TODO: Don't forget to clean up generated files
 
-    $sess = New-PSSession -ComputerName $RemoteIP
+    $sess = New-PSSession -ComputerName $TargetHost
 
-    Copy-Item -Path ".\$PackageFile" -Destination 'C:\' -ToSession $sess
+    # Oneliner for testing dir existence:
+    # Invoke-Command -Session $sess -ArgumentList $TargetDir {param($a);Test-Path $a}
+    
+    # Create dir on remote sys if it doesn't already exist:
+    Invoke-Command -Session $sess -ArgumentList ($TargetDir) {
+        param($arg1)
+        if (-NOT (Test-Path $arg1)) {
+            New-Item -ItemType Directory -Path $arg1 }
+    }
+
+    Copy-Item -Path ".\$PackageFile" -Destination "$TargetDir" -ToSession $sess
 
     $sess | Remove-PSSession
 }
